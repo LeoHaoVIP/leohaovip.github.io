@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>没有服务器？用手机也能搭建公网 AList！ |  LeoHao&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-yoga">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="LeoHao's Blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-alist-lite-frp"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  没有服务器？用手机也能搭建公网 AList！
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/01/14/alist-lite-frp/" class="article-date">
+  <time datetime="2025-01-14T23:40:26.000Z" itemprop="datePublished">2025-01-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/">个人项目</a>
+  </div>
+  
+    <div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">193</span>
+        </span>
+    </span>
+
+        <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time ≈ </span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+    </div>
+
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p align="center"><a href="https://github.com/LeoHaoVIP/AListLiteAndroid" target="_blank" rel="noopener noreferrer"><img width="100" src="https://storage.leohao.cn/img/2025/02/20/67b74136dab02.png" alt="logo"></a></p>
+<h3 align="center">AListLite | 在 Android 上一键启动 AList 服务</h3>
+<h5 align="center">AListLite 支持服务一键启动、状态栏磁贴、后台常驻、开机自启和高级配置等功能，界面简洁，上手简单。</h5>
+<p align="center">
+    <a href="https://github.com/LeoHaoVIP/AListLiteAndroid/releases" style="color: white" target="_blank"
+       rel="noopener noreferrer">
+        <img src="https://img.shields.io/github/v/release/LeoHaoVIP/AListLiteAndroid"/>
+    </a>
+    <a href="https://alist.nn.ci/zh/guide/drivers/common.html" style="color: white" target="_blank"
+       rel="noopener noreferrer">
+        <img src="https://img.shields.io/badge/挂载教程-338888.svg"/>
+    </a>
+    <a href="https://github.com/LeoHaoVIP/AListLiteAndroid/issues" style="color: white" target="_blank"
+       rel="noopener noreferrer">
+        <img src="https://img.shields.io/badge/问题反馈-00ccff.svg"/>
+    </a>
+    <a href="mailto:zhaowenhao2867@outlook.com" style="color: white" target="_blank"
+       rel="noopener noreferrer">
+        <img src="https://img.shields.io/badge/联系开发者-339966.svg"/>
+    </a>
+</p>
+<h1>AListLite</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/LeoHaoVIP/AListLiteAndroid">AListLite</a> 是一款支持运行 AList 服务的 Android 应用，相对于教程 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ex4y157xJ">BV1ex4y157xJ</a> 中的描述，用户无需借助安装 Termux 即可实现在 Android 设备（手机/电视）上使用 AList 服务。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/LeoHaoVIP/AListLiteAndroid">AListLite</a> 支持服务一键启动、状态栏磁贴、后台常驻、开机自启和高级配置等功能，界面简洁，上手简单。</p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 55%;">
+<iframe src="//player.bilibili.com/player.html?aid=113827454656060&bvid=BV1eWcae6Eee&cid=27869710458&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;"></iframe>
+    Loading...
+</div>
+<span id="more"></span>
+<blockquote>
+<p>AList 官网：<a target="_blank" rel="noopener" href="https://alist.nn.ci/zh/">https://alist.nn.ci/zh/</a></p>
+<p>AListLite 下载：<a target="_blank" rel="noopener" href="https://gitee.com/leohaovip/AListLiteAndroid/releases">https://gitee.com/leohaovip/AListLiteAndroid/releases</a></p>
+<p>AListLite 项目地址：<a target="_blank" rel="noopener" href="https://github.com/LeoHaoVIP/AListLiteAndroid">https://github.com/LeoHaoVIP/AListLiteAndroid</a></p>
+<p>花生壳：</p>
+<p>[1] 操作说明：<a target="_blank" rel="noopener" href="https://service.oray.com/question/4003.html">https://service.oray.com/question/4003.html</a></p>
+<p>[2] 下载链接：<a target="_blank" rel="noopener" href="https://hsk.oray.com/download">https://hsk.oray.com/download</a></p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AList/" rel="tag">AList</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/02/23/summary-2024/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            2024 年度总结
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2024/12/03/video-share-timelapse-2024/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">2024 年度延时摄影总结</div>
+      </a>
+    
+  </nav>
+
+   
+    <!-- valine评论 -->
+  <div id="vcomments-box">
+    <div id="vcomments"></div>
+  </div>
+  <script src="https://code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+  <script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: "#vcomments",
+      app_id: "YwjVGOsU1rK9W4LCp2Vs1dQC-gzGzoHsz",
+      app_key: "FxCIwYCUsvjhNTciuEr2q1R3",
+      serverURLs: "https://api.leancloud.leohao.cn",
+      path: window.location.pathname,
+      avatar: "robohash",
+      placeholder: "昵称填写QQ号可自动补全信息，快来评论吧~",
+      meta: ['nick','mail'],
+      recordIP: true,
+      enableQQ: true,
+      requiredFields: ['nick'],
+      // 设置Bilibili表情包地址
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      // 表情title和图片映射
+      emojiMaps: {
+        "tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        "tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+      }
+    });
+    const infoEle = document.querySelector("#vcomments .info");
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+      infoEle.childNodes.forEach(function (item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+  </script>
+  <style>
+    #vcomments-box {
+      padding: 0 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      #vcomments-box {
+        padding: 5px 0px;
+      }
+    }
+
+    #vcomments-box #vcomments {
+      background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+      padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+      padding-left: 10px;
+    }
+  </style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2025
+        <i class="ri-heart-fill heart_icon"></i> LeoHao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">皖ICP备18010565号-2</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo" id="logo-box">
+      <img src="/images/leohao-pic-new.png" alt="LeoHao&#39;s Blog">
+    </div>
+  
+  
+    <audio id="audio">
+      <source src="/audios/yoga-lin.mp3">
+    </audio>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">时间线</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/services">服务</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/projects">项目</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+<style>
+  .logo{
+    animation: rotate 5s linear infinite;
+    animation-play-state: paused;
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+<script>
+  const audio = document.getElementById('audio');
+  const logoBox = document.getElementById('logo-box');
+  logoBox.onclick = () => {
+    if (!audio) {
+      return;
+    }
+    if (audio.paused) {
+      audio.play();
+      logoBox.style.animationPlayState='running';
+    } else {
+      audio.pause();
+      logoBox.style.animationPlayState='paused';
+    }
+  };
+</script>
+
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+ 
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+    
+ 
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<!-- hexo injector body_end start --><script src="/js/outdate.js"></script><!-- hexo injector body_end end --></body>
+
+</html>

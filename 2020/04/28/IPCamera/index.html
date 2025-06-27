@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>一台IPCamera的复活之路... |  LeoHao&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-yoga">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="LeoHao's Blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-IPCamera"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  一台IPCamera的复活之路...
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/28/IPCamera/" class="article-date">
+  <time datetime="2020-04-28T08:29:00.000Z" itemprop="datePublished">2020-04-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%8E%A9%E6%9C%BA%E5%88%86%E4%BA%AB/">玩机分享</a>
+  </div>
+  
+    <div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.6k</span>
+        </span>
+    </span>
+
+        <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time ≈ </span>
+            <span class="post-count">9 min</span>
+        </span>
+    </span>
+    </div>
+
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>IPCamera</h1>
+<blockquote>
+<p>IP + Camera 即网际协议+摄像机，是一种由传统摄像机与网络技术结合所产生的新一代摄像机，一般摄像机包含内置 Web 服务，可以通过HTTP/HTTPS协议将内容传输给观测主机。IP Camera 至今已有十多年的历史。</p>
+<p>百度百科（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/IP-CAMERA%EF%BC%89">https://baike.baidu.com/item/IP-CAMERA）</a></p>
+</blockquote>
+<h1>前言</h1>
+<p>前段时间搞来两个监控摄像头，没有商标和其他任何说明，并且是已经用过的设备，因此 IP 地址和访问端口肯定也被更改了，于是陷入了无尽的思考… 经过近两天的资料查找和设备配置，目前已经可以投入使用，用途就是照看家里的三个娃 (doge。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df7180f3cd.jpeg" style="zoom:50%;" />
+<p>下面分享一下心得，其他网络设备的配置流程也与此大同小异（公网IP、端口映射、DDNS）。</p>
+<span id="more"></span>
+<h1>一、设备外观介绍</h1>
+<p>拿到的相机是这样的 ↓</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df774c9d1f.jpeg" style="zoom: 25%;" />
+<br>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df776d2cc3.jpeg" style="zoom:25%;" />
+<p>拿到的相机是这样的↑</p>
+<p>已经是裸的不能再裸的机器了，电源线也是在某宝上购买的，价格大概在 10 元左右，接下来就是连接网线进行配置了。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df778c54a6.jpeg" style="zoom:50%;" />
+<h1>二、设备信息获取</h1>
+<p>一般来说，IPCamera 都有一个默认的 IP 地址，且默认前缀长度为 24，尝试过很多可能的IP并设置为同一网段，比如 192.168.1.100、192.168.1.2 等都无法访问。这是一个旧设备，因此设备的配置基本上已经被修改了，所以需要找到与该设备对应的IP网络摄像机扫描软件，但这个过程并不是一帆风顺的，主要的原因还是设备的历史过于悠久，很难找到匹配的文档或软件。期间尝试过很多扫描工具都没有结果，最后在“一乐电子”论坛上找到了 2013 年的一个帖子，在这里拿到了专用于 Q 系列网络摄像机的扫描工具 Q_Search_cn.exe（感谢前辈！）。</p>
+<p>很是幸运，这个工具是可以使用的，不过期间也遇到了一些问题。</p>
+<ul>
+<li>
+<p>扫描主机和 IPCamera 必须同时以有线的方式连接同一路由器（或交换机）</p>
+</li>
+<li>
+<p>由于固件与软件版本不兼容的问题，其中一台设备固件版本较高，只能获取到设备信息，而无法修改配置进行烧录，另一台则可以对配置进行修改。</p>
+</li>
+</ul>
+<p>第一个问题很好解决，但是第二个问题的出现导致即使获取到 IPCamera 的 IP 地址，也不能直接访问，必须保证访问的主机与 IPCamera 在同一网段。为了解决这个问题，可以手动更改访问主机的 IP 地址和子网掩码，与摄像机的网络配置一致即可。但这种方式自然难以实现局域网中任意主机对摄像机的访问，因此只有通过修改路由器的 LAN 口地址和网关，保证接入路由器的所有设备都能够与 IPCamera 通信，IPCamera 的设备信息以及修改后的路由器配置如下图所示。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df77a7c7c9.png" style="zoom:50%;" />
+<p>从图中可以看出，子网掩码也被更改了，一般来说应该是255.255.255.0，可分配256-2=254台主机（除去全0的网络地址和全1的广播地址），现在的255.255.255.128只能分配126台主机，不过对于家庭网络也完全足够了，毕竟家里也不会同时来一百多位客人蹭网 [/手动狗头]。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df77c084bd.png" style="zoom: 50%;" />
+<img src="https://storage.leohao.cn/img/2023/05/12/645df77d9a58b.png" style="zoom: 62%;" />
+<h1>三、设备网络配置修改</h1>
+<p>类似于“木桶效应”，如果要保证两台摄像机都可以使用，那么另一台固件版本较低的设备也需要与修改后的路由器配置一致，修改后的网络配置如下图所示。</p>
+<blockquote>
+<p>主要修改的地方在IP地址、子网掩码以及网关，Web端口不变，仍使用HTTP协议默认的80端口</p>
+</blockquote>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df7808df5c.png" style="zoom:50%;" />
+<h1>四、远程监控画像查看</h1>
+<p>经过上面一波操作后，局域网中的设备已经能够访问到摄像机的监控画面了。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df78c5bcc4.png" style="zoom: 50%;" />
+<p>接下来要做的事情就是实现从外网访问内网的摄像机，为了做到这一点，还需要完成以下配置工作。</p>
+<h2 id="4-1-申请公网-ip">4.1 申请公网 IP</h2>
+<p>从用户拨号的角度来看，一条宽带对应一个用户，因此在任意正常联网的时刻下，用户获得的是一个能够访问外网的 IP。但一般来说，宽带运营商给用户分配的都是内网 IP，即不能被公网的设备访问到，目前的需求是从外网访问内网设备，因此首先需要向运营商申请公网IP，理由可以是安装网络摄像头，NAS 等需要端口映射的设备，报备一下就行。</p>
+<p>虽说截至 2019 年 11 月 26 日 下午，欧洲IP资源协调中心（RIPE NCC）宣布其IPv4可用池已经分配了最后的 /22 IPv4 网址，全球大约 43 亿个IPv4网址正式用完了。但这个公网 IP 的需求运营商还是会满足的，一般十几分钟搞定。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df78db1b6c.jpeg" style="zoom:33%;" />
+<blockquote>
+<p>附：检查家庭宽带分配的 IP 是否为公网 IP 的方法</p>
+<p>① 进入 <a target="_blank" rel="noopener" href="http://www.ip138.com">www.ip138.com</a> 网站，查看本机 IP</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df78f2445a.png" style="zoom:50%;" />
+<p>② 进入路由器管理页面，查看运营商自动分配的 IP（注意光猫要选择桥接模式，而非路由模式，否则分配的IP在光猫上，路由器获得只是局域网内的一个 IP 地址）。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df790709d3.png" style="zoom:50%;" />
+<p>③ 对比两个 IP 是否相同，如果相同，则是公网 IP；否则需要申请。从上图可以看出，两个 IP 是相同的，这是已经申请公网的 IP ，可以直接使用。</p>
+</blockquote>
+<h2 id="4-2-配置端口映射">4.2 配置端口映射</h2>
+<p>端口映射在一些路由器上也称为“虚拟服务器”，本质上都是 NAT 地址转换的一种，可以通过它把在公网的地址转翻译成私有地址。简单来说，设定端口映射后，外网设备在访问路由器被分配的公网IP地址并指定协议和端口号后，可以被转发至局域网中的主机和对应的端口，具体主机和端口根据映射列表确定。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df79b65390.png" style="zoom:50%;" />
+<p>以上是路由器内自定义的端口映射列表，假设我家路由器被分配的公网IP为 <code>IP_ extranet</code> ，那么外网的设备访问 <code>http://IP_ extranet:234</code> 即可访问到室内监控画面；访问 <code>http://IP_extranet:233</code> 即可访问到室外监控画面；访问 <code>ftp://IP_ extranet</code> 即可访问到家庭的 FTP 服务器。如此一来，我在外面玩的时候也可以看到家里的狗狗有没有拆家了 [/手动狗头]。</p>
+<h2 id="4-3-配置动态域名-ddns">4.3 配置动态域名 (DDNS)</h2>
+<p>经过以上设置，如果知道了路由器被分配的 IP 地址，则可以通过 <code>protocol://IP_address:&lt;port&gt;</code> 访问内网服务。但需要注意的是，路由器每次重新拨号或之前分配的IP地址到期后，运营商会为路由器重新分配IP地址（Reassign），也就是说路由器的IP地址不是固定的（应该也可以申请静态IP，不过没有操作过，怕被打）。所以仍然无法做到对内网监控的实时访问，因为无法实时获得路由器的IP地址。为了解决这个问题，DDNS动态域名服务派上用场了。</p>
+<blockquote>
+<p>“DDNS 是 Dynamic Domain Name Server 的缩写，是将用户的动态IP地址映射到一个固定的域名解析服务上，用户每次连接网络的时候客户端程序就会通过信息传递把该主机的动态IP地址传送给位于服务商主机上的服务器程序，服务器程序负责提供 DNS 服务并实现动态域名解析”。</p>
+<p>百度百科（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/ddns%EF%BC%89">https://baike.baidu.com/item/ddns）</a></p>
+</blockquote>
+<p>简单来说，具有 DDNS 域名解析的域名能够动态地将该域名映射到主机的 IP 地址上。借助 DDNS 服务，用户在访问内网服务时，无需实时获取路由器的公网 IP，直接使用动态域名即可，因为该域名始终指向该路由器的IP地址。一般的路由器都提供 DDNS 服务，例如Mercury 路由器可以使用 Oray 动态域名服务，用户需要提前申请域名并使用花生壳 DDNS 解析，即可完成动态域名的配置。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df7ffc4434.png" style="zoom:50%;" />
+<p>经过以上三个步骤的配置，即可实现在外网网络环境下，直接访问家庭监控。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df801ed292.png" style="zoom:50%;" />
+<h1>五、录像功能的实现（PC/NVR/Server）</h1>
+<p>如今市面上的摄像头都提供了存储功能，支持安装存储卡记录录像，但这里的 IPCamera 只有实时显示的功能，如果用户有录像的需求，还需要单独配备一台主机（或 NVR 设备），并安装监控软件（如 IPCMonitor）实时或定时录像。当然也可以自己动手编写监控画面的实时记录和检索脚本，存储在云端服务器上。</p>
+<blockquote>
+<p>2021年9月更新：目前已完成家庭监控平台的开发，项目地址为：<a target="_blank" rel="noopener" href="https://leohao.cn/ip_camera_web">https://leohao.cn/ip_camera_web</a></p>
+</blockquote>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df80357d38.png" style="zoom:50%;" />
+<p>至此，摄像机已经安装调试完毕，整个过程时间耗费如下图，其中对应文档和扫描工具的查找占用了主要时间。</p>
+<img src="https://storage.leohao.cn/img/2023/05/12/645df804b0bcb.png" style="zoom:50%;" />
+<p>P.S.如果摄像机的像素更清晰一些，能够借助 OpenCV 在此基础上做形态识别、目标跟踪等其他计算机视觉项目。</p>
+<h1>总结</h1>
+<p>网络摄像机与其他网络设备的配置流程大同小异，都不可避免地使用到端口映射、DDNS 服务。之前在公司实习的时候，也接触过端口映射下的内外网 FTP 网关的同步服务，刚好最近又动手熟悉了一遍流程。</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1nX-usXNONGu8MOJJGRdKbg#list/path=%2F">IPCamera扫描工具和集中监控控制台 (提取码: l1et)</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DDNS/" rel="tag">DDNS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag">监控</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag">硬件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84/" rel="tag">端口映射</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/04/10/inter-process-communication/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            进程间通信 (IPC) 的方式
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/01/01/summary-2018/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">2018 年度总结</div>
+      </a>
+    
+  </nav>
+
+   
+    <!-- valine评论 -->
+  <div id="vcomments-box">
+    <div id="vcomments"></div>
+  </div>
+  <script src="https://code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+  <script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: "#vcomments",
+      app_id: "YwjVGOsU1rK9W4LCp2Vs1dQC-gzGzoHsz",
+      app_key: "FxCIwYCUsvjhNTciuEr2q1R3",
+      serverURLs: "https://api.leancloud.leohao.cn",
+      path: window.location.pathname,
+      avatar: "robohash",
+      placeholder: "昵称填写QQ号可自动补全信息，快来评论吧~",
+      meta: ['nick','mail'],
+      recordIP: true,
+      enableQQ: true,
+      requiredFields: ['nick'],
+      // 设置Bilibili表情包地址
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      // 表情title和图片映射
+      emojiMaps: {
+        "tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        "tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+      }
+    });
+    const infoEle = document.querySelector("#vcomments .info");
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+      infoEle.childNodes.forEach(function (item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+  </script>
+  <style>
+    #vcomments-box {
+      padding: 0 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      #vcomments-box {
+        padding: 5px 0px;
+      }
+    }
+
+    #vcomments-box #vcomments {
+      background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+      padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+      padding-left: 10px;
+    }
+  </style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2025
+        <i class="ri-heart-fill heart_icon"></i> LeoHao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">皖ICP备18010565号-2</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo" id="logo-box">
+      <img src="/images/leohao-pic-new.png" alt="LeoHao&#39;s Blog">
+    </div>
+  
+  
+    <audio id="audio">
+      <source src="/audios/yoga-lin.mp3">
+    </audio>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">时间线</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/services">服务</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/projects">项目</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+<style>
+  .logo{
+    animation: rotate 5s linear infinite;
+    animation-play-state: paused;
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+<script>
+  const audio = document.getElementById('audio');
+  const logoBox = document.getElementById('logo-box');
+  logoBox.onclick = () => {
+    if (!audio) {
+      return;
+    }
+    if (audio.paused) {
+      audio.play();
+      logoBox.style.animationPlayState='running';
+    } else {
+      audio.pause();
+      logoBox.style.animationPlayState='paused';
+    }
+  };
+</script>
+
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+ 
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+    
+ 
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<!-- hexo injector body_end start --><script src="/js/outdate.js"></script><!-- hexo injector body_end end --></body>
+
+</html>

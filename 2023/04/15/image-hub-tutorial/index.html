@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>AList+云盘+LskyPro · 搭建大容量图床 |  LeoHao&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-yoga">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="LeoHao's Blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-image-hub-tutorial"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  AList+云盘+LskyPro · 搭建大容量图床
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/04/15/image-hub-tutorial/" class="article-date">
+  <time datetime="2023-04-15T09:53:12.000Z" itemprop="datePublished">2023-04-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+  </div>
+  
+    <div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+        <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time ≈ </span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+    </div>
+
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="效果演示">效果演示</h2>
+<p>传送门 → <a target="_blank" rel="noopener" href="https://storage.leohao.cn">LeoHao’s Image Hub</a></p>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440ebb6c0d6d.png" alt="已上传图片集合" style="zoom:33%;" />
+<span id="more"></span>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440eb7118562.png" alt="图床主页" style="zoom:33%;" />
+<img src="https://storage.leohao.cn/img/2023/04/20/6440eb95a34e8.png" alt="个人仪表盘" style="zoom:33%;" />
+<img src="https://storage.leohao.cn/img/2023/04/20/6440ebcd015ad.png" alt="图床控制台" style="zoom:33%;" />
+<blockquote>
+<p><strong>写在前面</strong></p>
+<p>图床是用于存放图片的空间，基于图床可以很方便的实现图片分享，便于日常使用和前端开发。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.lsky.pro/">兰空图床 · Lsky Pro</a> 是一款基于 PHP 开发的开源图床项目，界面美观且易于操作，目前支持<code>本地存储</code>、<code>AWS S3</code>、<code>阿里云 OSS</code>、<code>腾讯云 COS</code>、<code>七牛云</code>、<code>又拍云</code>、<code>SFTP</code>、<code>FTP</code>、<code>WebDAV</code>、<code>Minio</code> 等多类存储服务。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.lsky.pro/">Lsky Pro</a> 的优势在于其支持 <code>WebDAV</code> 协议，因此我们可以使用 <a target="_blank" rel="noopener" href="https://alist.nn.ci/">AList</a> 绑定个人网盘（如阿里云盘、百度网盘、天翼云盘、夸克网盘等），将 <a target="_blank" rel="noopener" href="https://alist.nn.ci/">AList</a> 提供的 <code>WebDAV</code> 服务作为图床的存储策略，进而充分利用云盘空间，快速地通过图床将图片托管到个人网盘。</p>
+</blockquote>
+<blockquote>
+<p>P.S. 本文档内的图片由 <a target="_blank" rel="noopener" href="https://storage.leohao.cn">LeoHao’s Image Hub</a> 托管</p>
+</blockquote>
+<h2 id="官方文档">官方文档</h2>
+<p><strong>兰空图床</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.lsky.pro/">兰空图床 · Docs</a> | <a target="_blank" rel="noopener" href="https://github.com/lsky-org/lsky-pro">GitHub · Lsky Pro</a></li>
+</ul>
+<p><strong>AList</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://alist.nn.ci/">AList Docs</a></li>
+</ul>
+<h2 id="部署步骤">部署步骤</h2>
+<blockquote>
+<p>注意：在部署开始前你应该拥有一台公网服务器，另外，以下步骤依赖于 Docker、Nginx 和 AList，请提前安装相关依赖并配置，本文档只对 LskyPro 图床的搭建步骤和必要的注意事项进行介绍。</p>
+</blockquote>
+<h3 id="step1-配置-alist-webdav-服务">Step1. 配置 AList WebDAV 服务</h3>
+<p>在个人网盘中创建 <code>lskypro-image</code> 文件夹，这里以天翼云盘为例，并在 AList 中将该文件夹挂载到路径 <code>/image</code>，如下图所示：</p>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440ebf9eeacd.png" alt="在云盘客户端创建图片文件夹" style="zoom:33%;" />
+<img src="https://storage.leohao.cn/img/2023/04/20/6440ec0ea26b5.png" alt="在 AList 中设置存储挂载路径" style="zoom:33%;" />
+<p>以上步骤完成后，访问 <code>DAV</code> 链接并通过身份校验后，即可进行图片的上传与访问。假设 AList 绑定的公网域名为 <code>alist.domain.name.cn</code>，则图片存储服务的 <code>DAV</code> 链接为：<code>https://alist.domain.name.cn/dav/image</code>。</p>
+<h3 id="step2-启动-lskypro-图床容器服务">Step2. 启动 LskyPro 图床容器服务</h3>
+<p>LskyPro 图床服务依赖于多个PHP插件，为了方便部署，我们采用 Docker 的方式安装 ，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建容器并启动（宿主机4003端口可自行更改）</span></span><br><span class="line">sudo docker run -d --name lskypro --restart unless-stopped -p 4003:80 -v /data/lskypro:/var/www/html coldpig/lskypro-docker:latest</span><br></pre></td></tr></table></figure>
+<h3 id="step3-修改-nginx-配置项">Step3. 修改 Nginx 配置项</h3>
+<p>注意，如果在 Nginx 配置中开启了 HTTPS ，需要执行以下命令修改图床项目源码，否则前端页面布局将被打乱：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it lskypro sed -i &#x27;32 a \\\Illuminate\\Support\\Facades\\URL::forceScheme(&#x27;&quot;&#x27;&quot;&#x27;https&#x27;&quot;&#x27;&quot;&#x27;);&#x27; /var/www/html/app/Providers/AppServiceProvider.php</span><br></pre></td></tr></table></figure>
+<p>假设图床服务的域名为 <code>image.domain.name.cn</code>，AList 部署在本地端口 <code>4015</code>，在 <code>nginx.conf</code> 中添加如下配置项：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Lsky Pro | Image Hub</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80<span class="comment">;</span></span><br><span class="line">    listen 443 ssl<span class="comment">;</span></span><br><span class="line">    server_name image.domain.name.cn<span class="comment">;</span></span><br><span class="line">    <span class="comment"># HTTPS 需要指定 SSL/TLS 证书路径</span></span><br><span class="line">    ssl_certificate cert/image.domain.name.cn.pem<span class="comment">;</span></span><br><span class="line">    ssl_certificate_key cert/image.domain.name.cn.key<span class="comment">;</span></span><br><span class="line">    ssl_session_cache shared:SSL:1m<span class="comment">;</span></span><br><span class="line">    ssl_session_timeout 5m<span class="comment">;</span></span><br><span class="line">    <span class="comment"># 转发图床服务请求</span></span><br><span class="line">    location / &#123;</span><br><span class="line">    	<span class="comment"># 转发端口 4003 与 Step2 中设定的宿主机端口保持一致</span></span><br><span class="line">        proxy_pass http://localhost:4003<span class="comment">;</span></span><br><span class="line">        proxy_read_timeout 600s<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 转发 AList 图片直链访问请求</span></span><br><span class="line">    location /img &#123;</span><br><span class="line">        proxy_pass http://localhost:4015/d/image<span class="comment">;</span></span><br><span class="line">        proxy_read_timeout 600s<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Nginx 配置说明</strong></p>
+<ul>
+<li>上传至图床的图片应该是可公开访问的，为此我们在以上 Nginx 配置中增加了 <code>转发 AList 图片直链访问请求</code> 配置项。经过以上配置，客户端通过访问 <code>https://image.domain.name.cn/img/$&#123;img_path&#125;</code> 即可直接获取图片，无需进行身份验证。</li>
+</ul>
+<h3 id="step4-配置-lskypro-图床">Step4. 配置 LskyPro 图床</h3>
+<h4 id="a-数据库配置">A. 数据库配置</h4>
+<p>以上步骤完成后，浏览器访问图床服务域名可进入如下图所示的配置页面。配置页面将引导我们设置数据库服务，为了减轻工作量，我们直接使用本地 SQLite 数据库，数据库路径留空即可（将自动在服务根目录的 <code>database</code> 目录下创建 <code>database.sqlite</code> 文件），同时需要设定管理员邮箱和登录密码。</p>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440eb1541150.png" alt="设置数据库为本地 SQLite 文件" style="zoom:33%;" />
+<p>配置完成后根据引导进入图床首页</p>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440eb14c7542.png" alt="数据库设置完成后的引导页面" style="zoom:33%;" />
+<h4 id="b-设置存储策略">B. 设置存储策略</h4>
+<p>登录管理员账户，点击侧边栏的 “存储策略” 进入图片文件存储的相关配置，创建一个新的存储策略。</p>
+<img src="https://storage.leohao.cn/img/2023/04/20/6440ec7b86a3f.png" alt="创建新的存储策略" style="zoom:33%;" />
+<p>默认存储策略为本地存储，为了不占用服务器空间，我们这里使用 AList 提供的 WebDAV 服务创建一个新的存储策略，配置项如表所示，其中访问域名即为图片直链对应的域名和路径。</p>
+<blockquote>
+<p><strong>注意：记得选中角色组，否则存储策略不会生效。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>配置内容</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称</td>
+<td>WebDAV 存储区</td>
+<td></td>
+</tr>
+<tr>
+<td>储存策略</td>
+<td>WebDAV</td>
+<td></td>
+</tr>
+<tr>
+<td>访问域名</td>
+<td><a target="_blank" rel="noopener" href="https://image.domain.name.cn/img">https://image.domain.name.cn/img</a></td>
+<td>记得添加 <code>/img</code> 后缀，与 Nginx 配置保持一致</td>
+</tr>
+<tr>
+<td>URL Queries</td>
+<td></td>
+<td>留空，无需填写</td>
+</tr>
+<tr>
+<td>连接地址</td>
+<td><a target="_blank" rel="noopener" href="https://alist.domain.name.cn">https://alist.domain.name.cn</a></td>
+<td><code>alist.domain.name.cn</code> 为 AList 服务访问域名</td>
+</tr>
+<tr>
+<td>认证方式</td>
+<td>Basic</td>
+<td>务必选择 Basic，否则连接失败</td>
+</tr>
+<tr>
+<td>路径前缀</td>
+<td>/dav/image</td>
+<td>与 AList 存储配置保持一致</td>
+</tr>
+<tr>
+<td>用户名</td>
+<td>${username}</td>
+<td>AList WebDAV 用户名（用户需有对 <code>image</code> 目录的 WebDAV 读写权限）</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>${password}</td>
+<td>AList WebDAV 密码（用户需有对 <code>image</code> 目录的 WebDAV 读写权限）</td>
+</tr>
+</tbody>
+</table>
+<img src="https://storage.leohao.cn/img/2023/04/20/64410bdc72fb7.png" alt="设置 WebDAV 存储策略" style="zoom:33%;" />
+<img src="https://storage.leohao.cn/img/2023/04/20/6440eb1942ca6.png" alt="设置 WebDAV 存储策略" style="zoom:33%;" />
+<h4 id="c-设置-webdav-为默认存储策略">C. 设置 WebDAV 为默认存储策略</h4>
+<p>WebDAV 存储策略添加后可以将默认本地存储策略删除，防止用户将图片上传至本地服务器。</p>
+<h2 id="宝塔面板安装说明">宝塔面板安装说明</h2>
+<p>不少小伙伴通过宝塔面板安装时遇到 WebDAV 配置错误的问题，经过排查，发现原因是 lskypro 开源项目的发布包存在问题，需要下载源码自行安装依赖，这里对主要步骤进行介绍。</p>
+<blockquote>
+<p>References</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/539654562">【保姆级教程】兰空图床(Lskypro)的宝塔面板安装教程</a></p>
+</blockquote>
+<h3 id="step1-配置宝塔面板">Step1. 配置宝塔面板</h3>
+<p>注：请自行安装宝塔面板（<a target="_blank" rel="noopener" href="https://www.bt.cn/new/download.html">宝塔面板官网</a>），<strong>注意 PHP &gt;= 8.0.2</strong></p>
+<h4 id="a-安装-php-扩展">A. 安装 PHP 扩展</h4>
+<p>进入 PHP 设置 → 安装扩展，选择安装 fileinfo, imagemagick 和 exif，如下图所示：</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c68b622bfd1.png" alt="安装 PHP 扩展" style="zoom:33%;" />
+<h4 id="b-取消-php-禁用函数">B. 取消 PHP 禁用函数</h4>
+<p>进入 PHP 设置 → 禁用函数，删除 proc_open（用于后续编译）、 exec、shell_exec、readlink、symlink、putenv、getenv，如下图所示：</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c690ff8c69d.png" alt="取消 PHP 禁用函数" style="zoom:33%;" />
+<h3 id="step2-下载-lskypro-源码并安装依赖">Step2. 下载 LskyPro 源码并安装依赖</h3>
+<h4 id="a-下载源码并上传至服务器">A. 下载源码并上传至服务器</h4>
+<p>下载源码 <a target="_blank" rel="noopener" href="https://github.com/lsky-org/lsky-pro/archive/refs/heads/master.zip">lsky-pro-master</a>，通过宝塔面板上传至 <code>/www/wwwroot</code> 目录并解压，源文件输出到 <code>/www/wwwroot/lsky-pro-master</code> 目录。</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c6912812d55.png" alt="上传源码并解压" style="zoom:33%;" />
+<h4 id="b-外部依赖安装">B. 外部依赖安装</h4>
+<p>打开 Shell 命令行工具，执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /www/wwwroot/lsky-pro-master</span><br><span class="line">sudo composer install</span><br></pre></td></tr></table></figure>
+<p>注：<code>composer install</code> 命令执行依赖于函数 <code>proc_open</code>，操作完成后会在源码目录下生成 <code>vendor</code> 目录。</p>
+<h3 id="step3-php-站点配置">Step3. PHP 站点配置</h3>
+<h4 id="a-新增-php-站点">A. 新增 PHP 站点</h4>
+<p>添加站点，域名自行配置，根目录设置为 <code>/www/wwwroot/lsky-pro-master</code>，如下图所示</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c68e720b372.png" alt="新增 PHP 站点" style="zoom:33%;" />
+<h4 id="b-设置运行目录">B. 设置运行目录</h4>
+<p>进入网站目录设置，选择运行目录为 <code>/public</code>，如下图所示：</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c68efbbdbf5.png" alt="设置网站运行目录" style="zoom:33%;" />
+<h4 id="c-添加伪静态配置">C. 添加伪静态配置</h4>
+<p>进入伪静态设置，粘贴以下内容</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">location</span> / &#123;</span><br><span class="line">    <span class="attribute">if</span> (!-e <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> /index.php?s=<span class="variable">$1</span> <span class="literal">last</span>; break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c68f507e162.png" alt="伪静态设置" style="zoom:33%;" />
+<h3 id="step4-读写权限设置">Step4. 读写权限设置</h3>
+<p>打开 Shell 命令行工具，执行以下命令更改用户组和读写权限：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown -R www /www/wwwroot/lsky-pro-master</span><br><span class="line">chgrp -R www /www/wwwroot/lsky-pro-master</span><br><span class="line">chmod -R 755 /www/wwwroot/lsky-pro-master</span><br></pre></td></tr></table></figure>
+<h3 id="step5-重启-php-服务">Step5. 重启 PHP 服务</h3>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c68fa84d75d.png" alt="重启 PHP 服务" style="zoom:33%;" />
+<p>接下来就能够正常显示 WebDAV 的配置页面了</p>
+<img src="https://storage.leohao.cn/img/2023/07/31/64c69208c8404.png" alt="正确的 WebDAV 配置页面" style="zoom:33%;" />
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AList/" rel="tag">AList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebDAV/" rel="tag">WebDAV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BA%8A/" rel="tag">图床</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/04/16/webmeeting-tutorial/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            WebMeeting 部署和使用说明
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/03/30/latex-continuous-figure/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">修改 Latex 跨页图序为『续x.x』</div>
+      </a>
+    
+  </nav>
+
+   
+    <!-- valine评论 -->
+  <div id="vcomments-box">
+    <div id="vcomments"></div>
+  </div>
+  <script src="https://code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+  <script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+  <script>
+    new Valine({
+      el: "#vcomments",
+      app_id: "YwjVGOsU1rK9W4LCp2Vs1dQC-gzGzoHsz",
+      app_key: "FxCIwYCUsvjhNTciuEr2q1R3",
+      serverURLs: "https://api.leancloud.leohao.cn",
+      path: window.location.pathname,
+      avatar: "robohash",
+      placeholder: "昵称填写QQ号可自动补全信息，快来评论吧~",
+      meta: ['nick','mail'],
+      recordIP: true,
+      enableQQ: true,
+      requiredFields: ['nick'],
+      // 设置Bilibili表情包地址
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      // 表情title和图片映射
+      emojiMaps: {
+        "tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv_打脸":"56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv_抓狂":"fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv_抠鼻":"c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv_斜眼笑":"911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv_无奈":"ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv_晕":"5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv_流汗":"cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv_流泪":"7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv_流鼻血":"c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv_点赞":"f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv_生气":"26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv_生病":"8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv_疑问":"0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv_白眼":"c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        "tv_皱眉":"72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv_目瞪口呆":"0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "tv_睡着":"8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv_笑哭":"1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv_腼腆":"89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv_色":"61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv_调侃":"4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv_调皮":"b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv_鄙视":"6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv_闭嘴":"c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv_难过":"87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv_馋":"fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv_鬼脸":"0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv_黑人问号":"45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv_鼓掌":"1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+      }
+    });
+    const infoEle = document.querySelector("#vcomments .info");
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+      infoEle.childNodes.forEach(function (item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+  </script>
+  <style>
+    #vcomments-box {
+      padding: 0 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      #vcomments-box {
+        padding: 5px 0px;
+      }
+    }
+
+    #vcomments-box #vcomments {
+      background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+      padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+      padding-left: 10px;
+    }
+  </style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2025
+        <i class="ri-heart-fill heart_icon"></i> LeoHao
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="https://beian.miit.gov.cn/" target="_black" rel="nofollow">皖ICP备18010565号-2</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo" id="logo-box">
+      <img src="/images/leohao-pic-new.png" alt="LeoHao&#39;s Blog">
+    </div>
+  
+  
+    <audio id="audio">
+      <source src="/audios/yoga-lin.mp3">
+    </audio>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">首页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">时间线</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/services">服务</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/projects">项目</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+<style>
+  .logo{
+    animation: rotate 5s linear infinite;
+    animation-play-state: paused;
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+<script>
+  const audio = document.getElementById('audio');
+  const logoBox = document.getElementById('logo-box');
+  logoBox.onclick = () => {
+    if (!audio) {
+      return;
+    }
+    if (audio.paused) {
+      audio.play();
+      logoBox.style.animationPlayState='running';
+    } else {
+      audio.pause();
+      logoBox.style.animationPlayState='paused';
+    }
+  };
+</script>
+
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+ 
+    
+        <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.css">
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/katex.min.js"></script>
+        <script src="https://cdn.staticfile.org/KaTeX/0.15.1/contrib/auto-render.min.js"></script>
+        
+    
+ 
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<!-- hexo injector body_end start --><script src="/js/outdate.js"></script><!-- hexo injector body_end end --></body>
+
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- 由 Microsoft Visio, SVG Export 生成 abstract_matter.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		width="6.6119in" height="4.42662in" viewBox="0 0 476.057 318.717" xml:space="preserve" color-interpolation-filters="sRGB"
+		class="st15">
+	<style type="text/css">
+	<![CDATA[
+		.st1 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+		.st2 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st3 {fill:#000000;font-family:宋体;font-size:1.00001em}
+		.st4 {marker-end:url(#mrkr5-33);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+		.st5 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.37313432835821}
+		.st6 {fill:#000000;font-family:宋体;font-size:0.833336em}
+		.st7 {font-size:1em}
+		.st8 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st9 {fill:#ffffff;stroke:none;stroke-linecap:butt}
+		.st10 {fill:#ffffff;stroke:none;stroke-linecap:butt;stroke-width:7.2}
+		.st11 {fill:#000000;font-family:宋体;font-size:1.00001em;font-weight:bold}
+		.st12 {font-size:1em;font-weight:normal}
+		.st13 {font-family:Times New Roman;font-size:1em}
+		.st14 {fill:#ffffff}
+		.st15 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend5">
+			<path d="M 2 1 L 0 0 L 1.98117 -0.993387 C 1.67173 -0.364515 1.67301 0.372641 1.98465 1.00043 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr5-33" class="st5" refX="-4.45" orient="auto" markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(-2.68,-2.68) "/>
+		</marker>
+	</defs>
+	<g>
+		<title>页-1</title>
+		<g id="shape1-1" transform="translate(66.0319,-49.5561)">
+			<title>工作表.1</title>
+			<path d="M0 318.72 L308.98 318.72" class="st1"/>
+		</g>
+		<g id="shape2-4" transform="translate(56.1107,-18.375)">
+			<title>工作表.2</title>
+			<desc>具体苹果</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="14.27" y="310.98" class="st3">具体苹果</text>		</g>
+		<g id="shape4-7" transform="translate(311.229,-21.2096)">
+			<title>工作表.4</title>
+			<desc>客体世界</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="14.27" y="310.98" class="st3">客体世界</text>		</g>
+		<g id="shape5-10" transform="translate(311.229,-49.5561)">
+			<title>工作表.5</title>
+			<desc>主观世界</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="14.27" y="310.98" class="st3">主观世界</text>		</g>
+		<g id="shape6-13" transform="translate(51.8587,-68.9218)">
+			<title>工作表.6</title>
+			<desc>苹果</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="26.27" y="310.98" class="st3">苹果</text>		</g>
+		<g id="shape7-16" transform="translate(88.7091,-102.938)">
+			<title>工作表.7</title>
+			<desc>水果</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="26.27" y="310.98" class="st3">水果</text>		</g>
+		<g id="shape8-19" transform="translate(141.15,-136.953)">
+			<title>工作表.8</title>
+			<desc>植物</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="26.27" y="310.98" class="st3">植物</text>		</g>
+		<g id="shape9-22" transform="translate(193.591,-176.638)">
+			<title>工作表.9</title>
+			<desc>生物</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="26.27" y="310.98" class="st3">生物</text>		</g>
+		<g id="shape10-25" transform="translate(254.536,-193.646)">
+			<title>工作表.10</title>
+			<desc>物质</desc>
+			<rect x="0" y="296.04" width="76.5354" height="22.6772" class="st2"/>
+			<text x="26.27" y="310.98" class="st3">物质</text>		</g>
+		<g id="shape11-28" transform="translate(-139.492,1.75105) rotate(-45)">
+			<title>工作表.11</title>
+			<path d="M-0 318.72 A33.1719 19.3448 50.03 0 1 26.27 314.73 L26.57 314.93" class="st4"/>
+		</g>
+		<g id="shape12-34" transform="translate(-88.4687,-32.2647) rotate(-45)">
+			<title>工作表.12</title>
+			<path d="M-0 318.72 A33.1719 19.3448 50.03 0 1 26.27 314.73 L26.57 314.93" class="st4"/>
+		</g>
+		<g id="shape13-39" transform="translate(-31.7758,-66.2804) rotate(-45)">
+			<title>工作表.13</title>
+			<path d="M-0 318.72 A33.1719 19.3448 50.03 0 1 26.27 314.73 L26.57 314.93" class="st4"/>
+		</g>
+		<g id="shape14-44" transform="translate(75.8394,-144.401) rotate(-32.2756)">
+			<title>工作表.14</title>
+			<path d="M-0 318.72 A34.4801 20.2609 45.08 0 1 28.98 314.93 L29.29 315.13" class="st4"/>
+		</g>
+		<g id="shape15-49" transform="translate(241.78,-97.7451)">
+			<title>工作表.15</title>
+			<desc>阿派朗 水·火·气·土 道 纯形式 太一 上帝 ···</desc>
+			<rect x="0" y="256.355" width="104.882" height="62.3622" class="st2"/>
+			<text x="37.44" y="236.54" class="st6">阿派朗 <tspan x="17.44" dy="1.8em" class="st7">水</tspan>·火·气·土 <tspan x="47.44"
+						dy="1.8em" class="st7">道 </tspan><tspan x="37.44" dy="1.8em" class="st7">纯形式 </tspan><tspan x="42.44"
+						dy="1.8em" class="st7">太一 </tspan><tspan x="42.44" dy="1.8em" class="st7">上帝 </tspan><tspan x="37.44"
+						dy="1.8em" class="st7">···</tspan></text>		</g>
+		<g id="shape21-58" transform="translate(264.457,-185.619)">
+			<title>工作表.21</title>
+			<path d="M0 318.72 C5.39 305.98 44.82 306.55 56.69 318.72" class="st1"/>
+		</g>
+		<g id="shape22-61" transform="translate(321.15,559.531) rotate(180)">
+			<title>工作表.22</title>
+			<path d="M0 318.72 C5.39 305.98 44.82 306.55 56.69 318.72" class="st1"/>
+		</g>
+		<g id="shape23-64" transform="translate(-260.012,146.927) rotate(-64.29)">
+			<title>工作表.23</title>
+			<desc>经验范畴 形式逻辑</desc>
+			<path d="M0 318.72 L89.62 318.72" class="st8"/>
+			<rect x="8.81131" y="304.317" width="72.0005" height="28.8001" class="st9"/>
+			<text x="20.81" y="315.12" class="st3">经验范畴 <tspan x="8.81" dy="1.2em" class="st7">（</tspan>形式逻辑）</text>		</g>
+		<g id="shape24-70" transform="translate(-89.4426,-83.5068) rotate(-30.9638)">
+			<title>工作表.24</title>
+			<desc>科学范畴 数理逻辑</desc>
+			<path d="M0 318.72 L165.29 318.72" class="st8"/>
+			<rect x="46.6433" y="304.317" width="72.0005" height="28.8001" class="st10"/>
+			<text x="58.64" y="315.12" class="st3">科学范畴 <tspan x="46.64" dy="1.2em" class="st7">（</tspan>数理逻辑）</text>		</g>
+		<g id="shape26-76" transform="translate(63.3036,-177.179) rotate(-31.4296)">
+			<title>工作表.26</title>
+			<desc>哲学范畴 辩证逻辑</desc>
+			<path d="M0 318.72 L84.16 318.72" class="st8"/>
+			<rect x="6.07791" y="304.317" width="72.0005" height="28.8001" class="st10"/>
+			<text x="18.08" y="315.12" class="st3">哲学范畴 <tspan x="6.08" dy="1.2em" class="st7">（</tspan>辩证逻辑）</text>		</g>
+		<g id="shape27-82" transform="translate(333.66,-113.336)">
+			<title>文字提示框.47</title>
+			<desc>— ↑ 过度抽象 ↓ —</desc>
+			<rect x="0" y="276.197" width="60.0191" height="42.5197" class="st2"/>
+			<text x="23.99" y="249.57" class="st11">— <tspan x="23.99" dy="1.321em" class="st7">↑  </tspan><tspan x="6.01"
+						dy="2.517em" class="st12">过度抽象   </tspan><tspan x="27.01" dy="3.629em" class="st13">↓ </tspan><tspan
+						x="24.01" dy="1.204em" class="st13">—</tspan></text>		</g>
+		<g id="shape28-89" transform="translate(342.41,-249.862)">
+			<title>思想气泡</title>
+			<desc>物质客观实在</desc>
+			<path d="M-3.79 321.67 A27.8128 19.254 -180 0 0 30.29 325.75 A22.6706 15.6942 -180 0 0 69.61 321.67 A19.9029 13.7782
+						 -180 0 0 98.44 311.5 A18.3601 12.7102 -180 0 0 111.54 291.15 A14.8204 10.2598 -180 0 0 101.06 276.9 A17.2921
+						 11.9708 -180 0 0 72.23 271.81 A14.821 10.2602 -180 0 0 48.63 272.83 A23.282 16.1175 -180 0 0 21.12 275.88
+						 A21.8984 15.1597 -180 0 0 -10.99 289.62 A12.3283 8.53453 -180 0 0 -16.23 305.9 A13.0835 9.05737 -180 0 0
+						 -3.79 321.67 ZM-21.14 345.19 A1.84252 1.84252 -180 1 0 -24.82 345.19 A1.84252 1.84252 -180 1 0 -21.14 345.19
+						 ZM-9.89 338.68 A3.68504 3.68504 -180 1 0 -17.26 338.68 A3.68504 3.68504 -180 1 0 -9.89 338.68 ZM3 331.05
+						 A5.52756 5.52756 -180 1 0 -8.06 331.05 A5.52756 5.52756 -180 1 0 3 331.05 Z" class="st14"/>
+			<path d="M-3.79 321.67 A27.8128 19.254 -180 0 0 30.29 325.75 A22.6706 15.6942 -180 0 0 69.61 321.67 A19.9029 13.7782
+						 -180 0 0 98.44 311.5 A18.3601 12.7102 -180 0 0 111.54 291.15 A14.8204 10.2598 -180 0 0 101.06 276.9 A17.2921
+						 11.9708 -180 0 0 72.23 271.81 A14.821 10.2602 -180 0 0 48.63 272.83 A23.282 16.1175 -180 0 0 21.12 275.88
+						 A21.8984 15.1597 -180 0 0 -10.99 289.62 A12.3283 8.53453 -180 0 0 -16.23 305.9 A13.0835 9.05737 -180 0 0
+						 -3.79 321.67" class="st8"/>
+			<path d="M-16.23 305.9 A9.77742 6.76864 -180 0 0 -9.03 306.41" class="st8"/>
+			<path d="M28.32 323.2 A12.9265 8.94868 -180 0 0 30.29 325.75" class="st8"/>
+			<path d="M69.61 321.67 A11.1191 7.69747 -180 0 0 70.6 318.62" class="st8"/>
+			<path d="M98.44 311.5 A10.3211 7.14501 -180 0 0 90.58 303.35" class="st8"/>
+			<path d="M107.61 294.2 A9.00982 6.23726 -180 0 0 111.54 291.15" class="st8"/>
+			<path d="M25.05 277.92 A13.2576 9.17785 -180 0 0 21.12 275.88" class="st8"/>
+			<path d="M-21.14 345.19 A1.84252 1.84252 -180 1 0 -24.82 345.19 A1.84252 1.84252 -180 1 0 -21.14 345.19" class="st8"/>
+			<path d="M-9.89 338.68 A3.68504 3.68504 -180 1 0 -17.26 338.68 A3.68504 3.68504 -180 1 0 -9.89 338.68" class="st8"/>
+			<path d="M3 331.05 A5.52756 5.52756 -180 1 0 -8.06 331.05 A5.52756 5.52756 -180 1 0 3 331.05" class="st8"/>
+			<text x="11.06" y="300.46" class="st6">物质：客观实在</text>		</g>
+	</g>
+</svg>
